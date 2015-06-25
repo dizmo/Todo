@@ -238,6 +238,9 @@ Class("Todo.Dizmo", {
 
             // Allow the resizing of the dizmo
             dizmo.setAttribute('settings/usercontrols/allowresize', true);
+
+            // Set framecolor to white
+            dizmo.setAttribute('settings/framecolor', '#ffffffDB');
         }
     }
 });
