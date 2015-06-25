@@ -79,7 +79,10 @@ Class("todo.List", {
                     jQuery('#ip'+i).hide();
                     jQuery('#la'+i).show();
 
-                    if (list[i].completed) DizmoElements('#cb'+i).prop('checked',true);
+                    if (list[i].completed) {
+                        DizmoElements('#cb'+i).prop('checked',true);
+                        jQuery("#la"+i).css("text-decoration","line-through");
+                    }
                 }
             }
 

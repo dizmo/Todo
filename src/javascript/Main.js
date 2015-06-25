@@ -28,10 +28,6 @@ Class("Todo.Main", {
         initEvents: function() {
             var self = this;
 
-            jQuery('.done-btn').on('click', function() {
-                Todo.Dizmo.showFront();
-            });
-
             // keypress handler for new task input field
             jQuery('#new-todo').on('keypress', function(e) {
                 self.updateOnEnter(e);
