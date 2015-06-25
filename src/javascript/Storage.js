@@ -1,3 +1,5 @@
+//= require List
+
 Class("todo.Storage", {
     my: {
         has: {
