@@ -16,7 +16,7 @@ To read more about our Grace tool, refer to the chapter [Grace](/docs/complete-g
 
 ## UI elements
 
-In your Todo project folder, edit the file src/index.html. In the `<body>` tag above `<div id="front">` we add `<div id="my-confirmation" data-type="dizmo-notification"></div>` for a confirmation dialog box. We also add the various inputfields, buttons and other UI elements styled with [dizmoElements](/docs/complete-guide/dizmoelements-library/). The `<body>` section:
+In your Todo project folder, edit the file src/index.html. In the `<body>` tag above `<div id="front">` we add `<div id="my-confirmation" data-type="dizmo-notification"></div>` for a confirmation dialog box. We also add the various input fields, buttons and other UI elements styled with [dizmoElements](/docs/complete-guide/dizmoelements-library/). The `<body>` section:
 
 ``` {.html}
 <body>
