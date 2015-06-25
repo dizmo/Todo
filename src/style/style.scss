@@ -1,0 +1,82 @@
+.no-dizmo-drag {
+  -apple-dashboard-region: dashboard-region(control rectangle); }
+
+#actions {
+  position: relative;
+  top: 212px;
+}
+
+#clear-all{
+  float: left;
+  margin-left: -1px;
+  clear: left;
+}
+
+#clear-completed{
+  float: right;
+  clear: right;
+}
+
+.dizmo-checkbox{
+  float: left;
+  margin-left: -5px;
+  clear: left;
+}
+
+label {
+  line-height: 32px;
+  overflow: hidden;
+  clear: left;
+  padding-left: 3px;
+}
+
+.tasklabel {
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+#new-todo {
+  width: 220px;
+}
+
+.edit-todo {
+  width: 110px !important;
+}
+
+.delete-todo {
+  float: right;
+}
+
+#todo-list input.edit-todo {
+  display: none; /* Hides input box*/
+}
+
+.list {
+  border-top: 1px solid rgba(114, 178, 222, 0.5);
+  border-bottom: 1px solid rgba(114, 178, 222, 0.5);
+  height: 200px;
+  top: 40px;
+  width: 230px;
+  overflow: hidden;
+  position: absolute;
+}
+
+.list ul {
+  list-style-type: none;
+  margin: 0px 10px 0px 0px;
+  padding: 5px;
+  position: relative;
+}
+
+.list li {
+  height: 32px;
+  border-bottom: 1px solid rgba(114, 178, 222, 0.5);
+  padding: 0.2em 1em;
+  margin: 0 -1em;
+}
+
+

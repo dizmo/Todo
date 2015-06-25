@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Todo</title>
+    <!-- jQuery libraries -->
+    <link rel="stylesheet" type="text/css" href="lib/jquery-ui/css/custom-theme/jquery-ui-1.10.3.custom.min.css" />
+    <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-ui/jquery-ui-1.10.3.custom.min.js"></script>
+    <!-- End of jQuery libraries -->
+
+    <!-- Joose JavaScript Class framework -->
+    <script type="text/javascript" src="lib/joose/joose.min.js"></script>
+    <!-- End of Joose framework -->
+
+    <!-- Utilities for dizmos -->
+    <script type="text/javascript" src="lib/dizmo/dizmoHelper.js"></script>
+    <!-- End of utilities -->
+
+    <!-- Your own stylesheet (do not remove!)-->
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+<body>
+<div id="my-confirmation" data-type="dizmo-notification"></div>
+<div id="front">
+    <div id="task-entry">
+        <input id="new-todo" data-type="dizmo-input" type="text" placeholder="Add a new task">
+
+        <div id="todo-list" class="list no-dizmo-drag" data-type="dizmo-list"></div>
+        <div id="actions">
+            <button id="clear-all" data-type="dizmo-button">Clear all</button>
+            <button id="clear-completed" data-type="dizmo-button">Clear completed</button>
+        </div>
+    </div>
+</div>
+
+<!-- Your own JavaScript (do not remove!) -->
+<script type="text/javascript" src="application.js"></script>
+</body>
+</html>
