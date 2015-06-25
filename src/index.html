@@ -21,18 +21,25 @@
     <link rel="stylesheet" type="text/css" href="style/style.css">
 </head>
 <body>
-    <div id="front">
-        <div class="center">
-            <p>Hello World</p>
-        </div>
-    </div>
-    <div id="back">
-        <div class="done-btn-wrapper">
-            <button class="done-btn" data-type="dizmo-button">Done</button>
-        </div>
-    </div>
+<div id="my-confirmation" data-type="dizmo-notification"></div>
+<div id="front">
+    <div id="task-entry">
+        <input id="new-todo" data-type="dizmo-input" type="text" placeholder="Add a new task">
 
-    <!-- Your own JavaScript (do not remove!) -->
-    <script type="text/javascript" src="application.js"></script>
+        <div id="todo-list" class="list" data-type="dizmo-list"></div>
+        <div id="actions">
+            <button id="clear-all" data-type="dizmo-button">Clear all</button>
+            <button id="clear-completed" data-type="dizmo-button">Clear completed</button>
+        </div>
+    </div>
+</div>
+<div id="back">
+    <div class="done-btn-wrapper">
+        <button class="done-btn" data-type="dizmo-button">Done</button>
+    </div>
+</div>
+
+<!-- Your own JavaScript (do not remove!) -->
+<script type="text/javascript" src="application.js"></script>
 </body>
 </html>
