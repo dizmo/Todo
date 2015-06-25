@@ -1,4 +1,5 @@
 //= require Main
+//= require Storage
 
 /*
 Generally you do not need to edit this file. You can start writing
