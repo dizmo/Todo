@@ -2,13 +2,13 @@ Class("todo.List", {
     my: {
         methods: {
             refresh: function() {
-
+		var i;	
                 var list=todo.Storage.getStorageList();
 
                 var el = jQuery('<ul />');
                 var list_el;
 
-                for (var i = 0; i < list.length; i++) {
+                for (i = 0; i < list.length; i++) {
                     list_el=jQuery('<li />');
 
                     jQuery('<input />',{
@@ -70,7 +70,7 @@ Class("todo.List", {
                 DizmoElements('#todo-list').dlist('update');
 
                 // initialize elements inside list
-                for (var i = 0; i < list.length; i++) {
+                for (i = 0; i < list.length; i++) {
                     DizmoElements('#cb'+i).dcheckbox();
                     DizmoElements('#bu'+i).dbutton();
 

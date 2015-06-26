@@ -37,7 +37,7 @@ Class("Todo.Main", {
                 console.log("Clear all");
 
                 DizmoElements('#my-confirmation').dnotify('ask', {
-                    title: 'Clear all dizmos',
+                    title: 'Clear all todos',
                     text: 'Are you sure? Please confirm.',
                     ok: function() { todo.Storage.deleteAll(); }
                 });
@@ -48,7 +48,7 @@ Class("Todo.Main", {
                 console.log("Clear completed");
 
                 DizmoElements('#my-confirmation').dnotify('ask', {
-                    title: 'Clear completed dizmos',
+                    title: 'Clear completed todos',
                     text: 'Are you sure? Please confirm.',
                     ok: function() { todo.Storage.deleteCompleted(); }
                 });
@@ -57,7 +57,7 @@ Class("Todo.Main", {
 
             jQuery('#todo-list').on('click keypress', function(e) {
 
-                var tid;
+		var i,l,ioe,tid;
                 // get target id
                 var otid=e.target.id;
                 if (otid) { tid=otid.substr(0,2); }
@@ -69,10 +69,10 @@ Class("Todo.Main", {
                 // list
                 if (tid=="to") {
                     //  hide all input elements
-                    jQuery('.edit-todo').each(function(){$(this).hide();});
+                    jQuery('.edit-todo').each(function(){jQuery(this).hide();});
                     // show all label elements
-                    var l=jQuery('.text-todo').length;
-                    for (var i = 0; i < l; i++) {
+                    l=jQuery('.text-todo').length;
+                    for (i = 0; i < l; i++) {
                         jQuery('#la'+i).show();
                     }
                 }
@@ -82,29 +82,28 @@ Class("Todo.Main", {
 
                     // input
                     if (tid=="ip") {
-                        if (e.type="keypress"&&e.which==13) {
-                            var nv=DizmoElements('#'+otid).val();
+                        if (e.type=="keypress"&&e.which==13) {
+			    var nv=DizmoElements('#'+otid).val();
                             todo.Storage.update(eid,nv);
                             // hide input, show label
-                            var ioe=otid.substr(2,1);
+                            ioe=otid.substr(2,1);
                             jQuery('#'+otid).hide();
                             jQuery('#la'+ioe).show();
                         }
                     }
 
                     // label
-                    var i;
                     if (tid=="la") {
                         //  hide all input elements
-                        jQuery('.edit-todo').each(function(){$(this).hide();});
+                        jQuery('.edit-todo').each(function(){jQuery(this).hide();});
                         // show all label elements
-                        var l=jQuery('.text-todo').length;
+                        l=jQuery('.text-todo').length;
                         for (i = 0; i < l; i++) {
                             jQuery('#la'+i).show();
                         }
 
                         var cid=e.target.id;
-                        var ioe=cid.substr(2,1);
+                        ioe=cid.substr(2,1);
                         // show input, hide label
                         jQuery('#'+e.target.id).hide();
                         jQuery('#ip'+ioe).show();
