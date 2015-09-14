@@ -1,28 +1,26 @@
-# (Display Name of the dizmo)
+# To Do
 
 **Table of contents**
 
-1. Summary
+1. Screenshots
 2. Description
-3. Examples
-4. Additional Information
+3. What is new in V0.2
+4. Additional information
 
-## Summary
+## Screenshots
 
- (A short summary of the purpose of the dizmo)
- 
+![Manage your tasks with the To Do dizmo](./Todo.png)
+
 ## Description
 
-(A more in depth description of what can be done with the dizmo and how it should be used. This may include images as well)  
-![The dizmo Icon](./Icon.png =32x32)
+Manage your tasks with the To Do dizmo.
 
-## Examples
+## What is new in V0.2
 
-(Some examples explaining how the dizmo could be used)
+* Build To Do.
 
 ## Additional Information
 
-* Developer: (Developers Name)
-* Publisher: (Publisher's Name, remove if same as Developer)
-* Contact: (Who to contact for additional information or support)
-* Website: (URL of the dizmo providing additional information)
+Developer: dizmo AG
+Contact: support@dizmo.com
+Website: [www.dizmo.com](https://www.dizmo.com)
