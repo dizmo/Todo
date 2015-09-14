@@ -1,6 +1,11 @@
 .no-dizmo-drag {
   -apple-dashboard-region: dashboard-region(control rectangle); }
 
+#task-entry{
+ margin-left: 2px;
+ margin-right: 4px;
+}
+
 #actions {
   position: relative;
   top: 212px;
@@ -15,12 +20,12 @@
 #clear-completed{
   float: right;
   clear: right;
-  margin-right: 4px;
+  margin-right: -2px;
 }
 
 .dizmo-checkbox{
   float: left;
-  margin-left: -7px;
+  margin-left: -6px;
   clear: left;
 }
 
