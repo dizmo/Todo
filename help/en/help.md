@@ -1,12 +1,5 @@
 # To Do
 
-**Table of contents**
-
-1. Screenshots
-2. Description
-3. What is new in V0.2
-4. Additional information
-
 ## Screenshots
 
 ![Manage your tasks with the To Do dizmo](./Todo.png)
