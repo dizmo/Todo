@@ -34,7 +34,7 @@ Class("Todo.Main", {
             });
 
             jQuery('#clear-all').on('click', function() {
-                console.log("Clear all");
+                // console.log("Clear all");
 
                 DizmoElements('#my-confirmation').dnotify('ask', {
                     title: 'Clear all todos',
@@ -45,7 +45,7 @@ Class("Todo.Main", {
             });
 
             jQuery('#clear-completed').on('click', function() {
-                console.log("Clear completed");
+                // console.log("Clear completed");
 
                 DizmoElements('#my-confirmation').dnotify('ask', {
                     title: 'Clear completed todos',
@@ -61,10 +61,10 @@ Class("Todo.Main", {
                 // get target id
                 var otid=e.target.id;
                 if (otid) { tid=otid.substr(0,2); }
-                console.log(tid);
+                // console.log(tid);
                 // get data-id attribute of target
                 var eid=e.target.getAttribute('data-id');
-                console.log(eid);
+                // console.log(eid);
 
                 // list
                 if (tid=="to") {
@@ -118,7 +118,7 @@ Class("Todo.Main", {
 
                     // button
                     if (tid=="bu") {
-                        console.log("delete:"+eid);
+                        // console.log("delete:"+eid);
                         todo.Storage.deleteOne(eid);
                     }
                 }
@@ -144,5 +144,3 @@ Class("Todo.Main", {
         }
     }
 });
-
-

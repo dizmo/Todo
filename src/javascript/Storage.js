@@ -30,7 +30,7 @@ Class("todo.Storage", {
                 dizmo.publicStorage.setProperty("dizmo-todos",this.storagelist);
             },
             update: function(id,newValue) {
-                console.log("update",id,newValue);
+                // console.log("update",id,newValue);
                 for (var i = 0; i < this.storagelist.length; i++) {
                     if (id==this.storagelist[i].id) {
                         this.storagelist[i].name=newValue;

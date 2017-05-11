@@ -241,6 +241,9 @@ Class("Todo.Dizmo", {
 
             // Set framecolor to white
             dizmo.setAttribute('settings/framecolor', '#ffffffDB');
+
+            dizmo.setAttribute('geometry/minWidth', 250);
+            dizmo.setAttribute('geometry/minHeight', 300);
         }
     }
 });
