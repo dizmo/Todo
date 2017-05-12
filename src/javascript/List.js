@@ -2,8 +2,14 @@ Class("todo.List", {
     my: {
         methods: {
             refresh: function() {
-		var i;	
-                var list=todo.Storage.getStorageList();
+		var i;
+                // var list=todo.Storage.getStorageList();
+                var list;
+                if(dizmo.publicStorage.getProperty('dizmo-todos')){
+                  list = dizmo.publicStorage.getProperty('dizmo-todos');
+                } else {
+                  list = [];
+                }
 
                 var el = jQuery('<ul />');
                 var list_el;
