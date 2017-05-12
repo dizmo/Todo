@@ -237,12 +237,12 @@ Class("Todo.Dizmo", {
             var self = this;
 
             // Allow the resizing of the dizmo
-            dizmo.setAttribute('settings/usercontrols/allowresize', true);
+            dizmo.setAttribute('settings/usercontrols/allowresize', false);
 
             // Set framecolor to white
             dizmo.setAttribute('settings/framecolor', '#ffffffDB');
 
-            dizmo.setAttribute('geometry/minWidth', 250);
+            dizmo.setAttribute('geometry/minWidth', 275);
             dizmo.setAttribute('geometry/minHeight', 300);
         }
     }
