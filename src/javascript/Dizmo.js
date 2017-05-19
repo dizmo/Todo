@@ -237,7 +237,7 @@ Class("Todo.Dizmo", {
             var self = this;
 
             // Allow the resizing of the dizmo
-            dizmo.setAttribute('settings/usercontrols/allowresize', false);
+            dizmo.setAttribute('settings/usercontrols/allowresize', true);
 
             // Set framecolor to white
             dizmo.setAttribute('settings/framecolor', '#ffffffDB');

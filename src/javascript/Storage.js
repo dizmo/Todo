@@ -26,8 +26,13 @@ Class("todo.Storage", {
                 model.name=value;
                 model.completed=false;
                 model.id=this._generateid();
+                this.storagelist = dizmo.publicStorage.getProperty("dizmo-todos");
+                if(!this.storagelist){
+                  this.storagelist = [];
+                }
                 this.storagelist.push(model);
                 dizmo.publicStorage.setProperty("dizmo-todos",this.storagelist);
+                todo.List.refresh();
             },
             update: function(id,newValue) {
                 // console.log("update",id,newValue);

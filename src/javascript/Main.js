@@ -28,6 +28,12 @@ Class("Todo.Main", {
         initEvents: function() {
             var self = this;
 
+            jQuery('#todo-list').height(dizmo.getHeight() - 110);
+
+            jQuery(events).on('dizmo.resized', function(e, width, height) {
+              jQuery('#todo-list').height(dizmo.getHeight() - 110);
+            });
+            
             // keypress handler for new task input field
             jQuery('#new-todo').on('keypress', function(e) {
                 self.updateOnEnter(e);
