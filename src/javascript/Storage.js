@@ -36,6 +36,10 @@ Class("todo.Storage", {
             },
             update: function(id,newValue) {
                 // console.log("update",id,newValue);
+                this.storagelist = dizmo.publicStorage.getProperty("dizmo-todos");
+                if(!this.storagelist){
+                  this.storagelist = [];
+                }
                 for (var i = 0; i < this.storagelist.length; i++) {
                     if (id==this.storagelist[i].id) {
                         this.storagelist[i].name=newValue;
@@ -44,6 +48,10 @@ Class("todo.Storage", {
                 dizmo.publicStorage.setProperty("dizmo-todos",this.storagelist);
             },
             toggleCompleted: function(id) {
+              this.storagelist = dizmo.publicStorage.getProperty("dizmo-todos");
+              if(!this.storagelist){
+                this.storagelist = [];
+              }
                 for (var i = 0; i < this.storagelist.length; i++) {
                     if (id==this.storagelist[i].id) {
                         if (this.storagelist[i].completed) { this.storagelist[i].completed=false; } else { this.storagelist[i].completed=true; }
@@ -53,6 +61,10 @@ Class("todo.Storage", {
                 //console.log(this.storagelist);
             },
             deleteOne: function(id) {
+              this.storagelist = dizmo.publicStorage.getProperty("dizmo-todos");
+              if(!this.storagelist){
+                this.storagelist = [];
+              }
                 for (var i = 0; i < this.storagelist.length; i++) {
                     if (id==this.storagelist[i].id) {
                         var removed=this.storagelist.splice(i,1);
@@ -62,9 +74,14 @@ Class("todo.Storage", {
                 //console.log(this.storagelist);
             },
             deleteCompleted: function() {
+              this.storagelist = dizmo.publicStorage.getProperty("dizmo-todos");
+              if(!this.storagelist){
+                this.storagelist = [];
+              }
                 for (var i = 0; i < this.storagelist.length; i++) {
                     if (this.storagelist[i].completed) {
                         var removed=this.storagelist.splice(i,1);
+                        i--;
                     }
                 }
                 dizmo.publicStorage.setProperty("dizmo-todos",this.storagelist);
