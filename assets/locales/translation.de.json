@@ -1,0 +1,8 @@
+{
+  "#front": {
+    "greeting": "Hello Welt!"
+  },
+  "#back": {
+    "done": "Zurück"
+  }
+}

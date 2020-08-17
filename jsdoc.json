@@ -1,0 +1,11 @@
+{
+    "opts": {
+        "destination": "docs",
+        "readme": "README.md",
+        "recurse": true,
+        "template": "node_modules/minami"
+    },
+    "plugins": [
+        "plugins/markdown"
+    ]
+}
