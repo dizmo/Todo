@@ -1,3 +1,9 @@
 {
-  "@dizmo/generator-dizmo": {}
+  "@dizmo/generator-dizmo": {
+    "promptValues": {
+      "personName": "Martin Wirth",
+      "personEmail": "mwirth@dizmo.com"
+    },
+    "domain": "com.dizmo"
+  }
 }
