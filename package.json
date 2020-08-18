@@ -1,10 +1,10 @@
 {
-  "name": "to-do",
+  "name": "ToDo",
   "description": "A simple To Do List to keep track of things that need to be done and tick them off as you complete your tasks.",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "author": {
-    "name": "Grace DizmoGen Converter",
-    "email": "support@dizmo.com"
+    "name": "Martin Wirth",
+    "email": "mwirth@dizmo.com"
   },
   "contributors": [
     {
@@ -18,15 +18,15 @@
         "settings/usercontrols/allowresize": true
       },
       "bundle-identifier": "com.dizmo.todo",
-      "bundle-name": "To Do",
+      "bundle-name": "ToDo",
       "category": "productivity",
-      "height": 300,
+      "height": 280,
+      "width": 240,
       "tags": [
         "Todo",
         "tasks"
       ],
-      "width": 250,
-      "display-name": "To Do",
+      "display-name": "ToDo",
       "elements-version": "1.0",
       "api-version": "1.3",
       "change-log": "Initial version"
@@ -76,10 +76,10 @@
     "pump": "^3.0.0",
     "webpack-obfuscator": "^1.1.0"
   },
-  "private": true,
+  "private": false,
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:dizmo/Todo.git"
   },
   "scripts": {
     "build": "node ./gulp/tools/run-task.js",

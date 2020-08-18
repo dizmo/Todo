@@ -1,5 +1,6 @@
 .no-dizmo-drag {
   -apple-dashboard-region: dashboard-region(control rectangle);
+  --dizmo-no-drag: true;
 }
 #task-entry {
   margin-left: 2px;
@@ -47,6 +48,13 @@ label {
   float: right;
   margin-right: -14px;
 }
+#new-todo {
+  width: calc(100% - 10px);
+}
+#todos {
+  width: calc(100% - 20px);
+  height: calc(100% - 110px);
+}
 #todos input.edit {
   display: none;
 }
@@ -70,12 +78,6 @@ label {
   border-bottom: 1px solid rgba(114, 178, 222, 0.5);
   padding: 0.2em 1em;
   margin: 0 -1em;
-}
-#new-todo {
-  width: calc(100% - 10px);
-}
-#todos {
-  width: calc(100% - 20px);
 }
 #actions {
   position: absolute;

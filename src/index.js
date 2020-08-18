@@ -3,19 +3,12 @@ window.document.addEventListener('dizmoready', function() {
   initEvents();
 });
 var todos;
-dizmo.subscribeToAttribute('geometry/height', resized);
-dizmo.subscribeToAttribute('geometry/width', resized);
-function resized() {
-  $('#todos').height(dizmo.getHeight() - 110);
-}
 function initEvents() {
   dizmo.canDock(false);
   dizmo.setAttribute('settings/usercontrols/allowresize', true);
   dizmo.setAttribute('settings/framecolor', '#ffffffDB');
-  dizmo.setAttribute('geometry/minWidth', 275);
-  dizmo.setAttribute('geometry/minHeight', 300);
-  todos = dizmo.publicStorage.getProperty('todos');
-  refresh();
+  dizmo.setAttribute('geometry/minWidth', 240);
+  dizmo.setAttribute('geometry/minHeight', 280);
   $('#todos').height(dizmo.getHeight() - 110);
   $('#new-todo').on('keypress', function(e) { if (e.which == 13) { addNewTodo(); } });
   $('#clear-all').on('click', function() {
@@ -58,11 +51,13 @@ function initEvents() {
       }
     }
   });
-  dizmo.publicStorage.subscribeToProperty('todos', function(p,val) {
+  dizmo.publicStorage.subscribeToProperty('todos', changeTodos);
+  changeTodos('todos',dizmo.publicStorage.getProperty('todos'));
+  function changeTodos(p,val) {
     if (!val){ dizmo.publicStorage.setProperty('todos',[]); return; }
     todos=val;
     refresh();
-  });
+  }
 }
 function addNewTodo() {
   const todo = $('#new-todo').val().trim();
