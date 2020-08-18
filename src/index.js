@@ -1,14 +1,12 @@
-/*global jQuery DizmoElements */
-window.showBack = dizmo.showBack;
-window.showFront = dizmo.showFront;
+/*global $ DizmoElements */
 window.document.addEventListener('dizmoready', function() {
   initEvents();
 });
-var storagelist;
+var todos;
 dizmo.subscribeToAttribute('geometry/height', resized);
 dizmo.subscribeToAttribute('geometry/width', resized);
 function resized() {
-  jQuery('#todo-list').height(dizmo.getHeight() - 110);
+  $('#todos').height(dizmo.getHeight() - 110);
 }
 function initEvents() {
   dizmo.canDock(false);
@@ -16,183 +14,112 @@ function initEvents() {
   dizmo.setAttribute('settings/framecolor', '#ffffffDB');
   dizmo.setAttribute('geometry/minWidth', 275);
   dizmo.setAttribute('geometry/minHeight', 300);
-  init();
+  todos = dizmo.publicStorage.getProperty('todos');
   refresh();
-  jQuery('#todo-list').height(dizmo.getHeight() - 110);
-  // keypress handler for new task input field
-  jQuery('#new-todo').on('keypress', function(e) {
-    updateOnEnter(e);
-  });
-  jQuery('#clear-all').on('click', function() {
+  $('#todos').height(dizmo.getHeight() - 110);
+  $('#new-todo').on('keypress', function(e) { if (e.which == 13) { addNewTodo(); } });
+  $('#clear-all').on('click', function() {
     DizmoElements('#my-confirmation').dnotify('ask', { title: 'Clear all todos', text: 'Are you sure? Please confirm.',
       ok: function() { deleteAll(); }
     });
   });
-  jQuery('#clear-completed').on('click', function() {
+  $('#clear-completed').on('click', function() {
     DizmoElements('#my-confirmation').dnotify('ask', { title: 'Clear completed todos', text: 'Are you sure? Please confirm.',
       ok: function() { deleteCompleted(); }
     });
   });
-  jQuery('#todo-list').on('click keypress', function(e) {
-    var i, l, ioe, tid;
-    var otid = e.target.id;
-    if (otid) { tid = otid.substr(0, 2); }
-    var eid = e.target.getAttribute('data-id');
-    if (tid == "to") {
-      jQuery('.edit-todo').each(function() { jQuery(this).hide(); });
-      l = jQuery('.text-todo').length;
-      for (i = 0; i < l; i++) { jQuery('#la' + i).show(); }
+  $('#todos').on('click keypress', function(e) {
+    const otid = e.target.id;
+    const tid = otid.substr(0, 2);
+    const eid = e.target.getAttribute('data-id');
+    if (tid == 'to') {
+      $('.edit').each(function() { $(this).hide(); });
     }
     if (eid) {
-      if (tid == "ip") {
-        if (e.type == "keypress" && e.which == 13) {
+      if (tid == 'ip') {
+        if (e.type == 'keypress' && e.which == 13) {
           var nv = DizmoElements('#' + otid).val();
           update(eid, nv);
-          ioe = otid.substr(2, 1);
-          jQuery('#' + otid).hide();
-          jQuery('#la' + ioe).show();
+          let ioe = otid.substr(2, 1);
+          $('#' + otid).hide();
+          $('#la' + ioe).show();
         }
-      }
-      // label
-      if (tid == "la") {
-        //  hide all input elements
-        jQuery('.edit-todo').each(function() { jQuery(this).hide(); });
-        // show all label elements
-        l = jQuery('.text-todo').length;
-        for (i = 0; i < l; i++) { jQuery('#la' + i).show(); }
+      } else if (tid == 'la') {
+        $('.edit').each(function() { $(this).hide(); });
         var cid = e.target.id;
-        ioe = cid.substr(2, 1);
-        // show input, hide label
-        jQuery('#' + e.target.id).hide();
-        jQuery('#ip' + ioe).show();
-        jQuery('#ip' + ioe).focus();
-      }
-      // checkbox
-      if (tid == "cb") {
+        let ioe = cid.substr(2, 1);
+        $('#' + e.target.id).hide();
+        $('#ip' + ioe).show();
+        $('#ip' + ioe).focus();
+      } else if (tid == 'cb') {
         toggleCompleted(eid);
-      }
-      // button
-      if (tid == "bu") {
-        // console.log("delete:"+eid);
+      } else if (tid == 'bu') {
         deleteOne(eid);
       }
     }
   });
-  dizmo.publicStorage.subscribeToProperty("dizmo-todos", function() { refresh(); });
+  dizmo.publicStorage.subscribeToProperty('todos', function(p,val) {
+    if (!val){ dizmo.publicStorage.setProperty('todos',[]); return; }
+    todos=val;
+    refresh();
+  });
 }
-function updateOnEnter(e) { if (e.which == 13) { addTodo(); } }
-function addTodo() {
-  var value = jQuery('#new-todo').val().trim();
-  if (value !== "") { add(value); }
-  jQuery('#new-todo').val('');
+function addNewTodo() {
+  const todo = $('#new-todo').val().trim();
+  if (todo !== '') { add(todo); }
+  $('#new-todo').val('');
 }
 function refresh() {
-  var i;
-  // var list=getStorageList();
-  var list = dizmo.publicStorage.getProperty('dizmo-todos');
-  if (!list) { list = []; }
-  var el = jQuery('<ul />');
-  var list_el;
-  for (i = 0; i < list.length; i++) {
-    list_el = jQuery('<li />');
-    jQuery('<input />', { 'id': 'cb' + i, 'data-type': 'dizmo-input', 'data-id': list[i].id, 'type': 'checkbox' }).appendTo(list_el);
-    jQuery('<label>', { 'id': 'la' + i, 'data-id': list[i].id, 'text': list[i].name, 'class': 'tasklabel' }).appendTo(list_el);
-    jQuery('<input />', { 'id': 'ip' + i, 'data-type': 'dizmo-input', 'data-id': list[i].id, 'type': 'text', 'class': 'edit-todo', 'value': list[i].name }).appendTo(list_el);
-    jQuery('<button>', { 'id': 'bu' + i, 'text': 'x', 'data-id': list[i].id, 'class': 'delete-todo', 'data-type': 'dizmo-button' }).appendTo(list_el);
-    list_el.appendTo(el);
-  }
-  jQuery('#todo-list').empty();
-  el.appendTo('#todo-list');
-  for (i = 0; i < list.length; i++) {
+  const $ul = $('<ul />');
+  todos.forEach((todo, i) => {
+    let $li = $('<li />');
+    $('<input />', { 'id': 'cb' + i, 'data-type': 'dizmo-input', 'data-id': todo.id, 'type': 'checkbox' }).appendTo($li);
+    $('<label>', { 'id': 'la' + i, 'data-id': todo.id, 'text': todo.name, 'class': 'tasklabel' }).appendTo($li);
+    $('<input />', { 'id': 'ip' + i, 'data-type': 'dizmo-input', 'data-id': todo.id, 'type': 'text', 'class': 'edit', 'value': todo.name }).appendTo($li);
+    $('<button>', { 'id': 'bu' + i, 'text': 'x', 'data-id': todo.id, 'class': 'delete-todo', 'data-type': 'dizmo-button' }).appendTo($li);
+    $li.appendTo($ul);
+  });
+  $('#todos').empty();
+  $ul.appendTo('#todos');
+  todos.forEach((todo, i) => {
     DizmoElements('#cb' + i).dcheckbox();
     DizmoElements('#bu' + i).dbutton();
     DizmoElements('#ip' + i).dinput();
-    jQuery('#ip' + i).hide();
-    jQuery('#la' + i).show();
-    if (list[i].completed) {
+    $('#ip' + i).hide();
+    $('#la' + i).show();
+    if (todo.completed) {
       DizmoElements('#cb' + i).prop('checked', true);
-      jQuery("#la" + i).css("text-decoration", "line-through");
+      $('#la' + i).css('text-decoration', 'line-through');
     }
-  }
-}
-function init() {
-  var records = dizmo.publicStorage.getProperty("dizmo-todos");
-  if (records) { storagelist = records; }
+  });
 }
 function _generateid() {
-  return (_s4() + _s4() + "-" + _s4() + _s4());
+  return (_s4() + _s4() + '-' + _s4() + _s4());
   function _s4() { return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1); }
 }
-function add(value) {
-  var model = {};
-  model.name = value;
-  model.completed = false;
-  model.id = _generateid();
-  storagelist = dizmo.publicStorage.getProperty("dizmo-todos");
-  if (!storagelist) {
-    storagelist = [];
-  }
-  storagelist.push(model);
-  dizmo.publicStorage.setProperty("dizmo-todos", storagelist);
+function add(name) {
+  var todo = {};
+  todo.name = name;
+  todo.completed = false;
+  todo.id = _generateid();
+  todos.push(todo);
+  dizmo.publicStorage.setProperty('todos', todos);
   refresh();
 }
-function update(id, newValue) {
-  // console.log("update",id,newValue);
-  storagelist = dizmo.publicStorage.getProperty("dizmo-todos");
-  if (!storagelist) {
-    storagelist = [];
-  }
-  for (var i = 0; i < storagelist.length; i++) {
-    if (id == storagelist[i].id) {
-      storagelist[i].name = newValue;
-    }
-  }
-  dizmo.publicStorage.setProperty("dizmo-todos", storagelist);
+function update(id, name) {
+  todos.forEach((todo) => { if (id == todo.id) { todo.name = name; } });
+  dizmo.publicStorage.setProperty('todos', todos);
 }
 function toggleCompleted(id) {
-  storagelist = dizmo.publicStorage.getProperty("dizmo-todos");
-  if (!storagelist) {
-    storagelist = [];
-  }
-  for (var i = 0; i < storagelist.length; i++) {
-    if (id == storagelist[i].id) {
-      if (storagelist[i].completed) {
-        storagelist[i].completed = false;
-      } else {
-        storagelist[i].completed = true;
-      }
-    }
-  }
-  dizmo.publicStorage.setProperty("dizmo-todos", storagelist);
-  //console.log(storagelist);
+  todos.forEach((todo) => { if (id == todo.id) { todo.completed=!todo.completed; } });
+  dizmo.publicStorage.setProperty('todos', todos);
 }
 function deleteOne(id) {
-  storagelist = dizmo.publicStorage.getProperty("dizmo-todos");
-  if (!storagelist) {
-    storagelist = [];
-  }
-  for (var i = 0; i < storagelist.length; i++) {
-    if (id == storagelist[i].id) {
-      storagelist.splice(i, 1);
-    }
-  }
-  dizmo.publicStorage.setProperty("dizmo-todos", storagelist);
-  //console.log(storagelist);
+  dizmo.publicStorage.setProperty('todos', todos.filter((todo)=>id !== todo.id));
 }
 function deleteCompleted() {
-  storagelist = dizmo.publicStorage.getProperty("dizmo-todos");
-  if (!storagelist) {
-    storagelist = [];
-  }
-  for (var i = 0; i < storagelist.length; i++) {
-    if (storagelist[i].completed) {
-      storagelist.splice(i, 1);
-      i--;
-    }
-  }
-  dizmo.publicStorage.setProperty("dizmo-todos", storagelist);
+  dizmo.publicStorage.setProperty('todos', todos.filter((todo)=>!todo.completed));
 }
 function deleteAll() {
-  storagelist = [];
-  dizmo.publicStorage.setProperty("dizmo-todos", []);
+  dizmo.publicStorage.setProperty('todos', []);
 }

@@ -1,96 +1,95 @@
 .no-dizmo-drag {
-  -apple-dashboard-region: dashboard-region(control rectangle); }
-
-  #task-entry {
-    margin-left: 2px;
-    margin-right: 4px; }
-
-    #actions {
-      position: relative;
-    }
-
-    #clear-all {
-      float: left;
-      margin-left: -1px;
-      clear: left; }
-
-      #clear-completed {
-        float: right;
-        clear: right;
-        margin-right: -2px; }
-
-        .dizmo-checkbox {
-          float: left;
-          margin-left: -6px;
-          clear: left; }
-
-          label {
-            line-height: 32px;
-            overflow: hidden;
-            clear: left;
-            padding-left: 3px; }
-
-            .tasklabel {
-              /*max-width: 120px;*/
-              white-space: nowrap;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              vertical-align: middle;
-              display: inline-block; }
-
-              #new-todo {
-                width: 245px; }
-
-                .edit-todo {
-                  width: 110px !important; }
-
-                  .delete-todo {
-                    float: right;
-                    margin-right: -14px; }
-
-                    #todo-list input.edit-todo {
-                      display: none; }
-
-                      .list {
-                        border-top: 1px solid rgba(114, 178, 222, 0.5);
-                        border-bottom: 1px solid rgba(114, 178, 222, 0.5);
-                        height: 200px;
-                        top: 40px;
-                        width: 255px;
-                        overflow: hidden;
-                        position: absolute; }
-
-                        .list ul {
-                          list-style-type: none;
-                          margin: 0 10px 0 0;
-                          padding: 5px;
-                          position: relative; }
-
-                          .list li {
-                            height: 32px;
-                            border-bottom: 1px solid rgba(114, 178, 222, 0.5);
-                            padding: 0.2em 1em;
-                            margin: 0 -1em; }
-
-                            #new-todo{
-                              width: calc(100% - 10px);
-                            }
-                            #todo-list{
-                              width: calc(100% - 20px);
-                            }
-                            #actions{
-                              position: absolute;
-                              bottom: 30px;
-                              width: calc(100% - 20px);
-                            }
-                            .list{
-                              overflow-y: scroll;
-                              position: absolute;
-                              overflow-x: hidden;
-                            }
-                            .list ul{
-                              margin: 0 15px 0 0;
-                            }
-                            .tasklabel{
-                              width: calc(100% - 100px);
-                            }
+  -apple-dashboard-region: dashboard-region(control rectangle);
+}
+#task-entry {
+  margin-left: 2px;
+  margin-right: 4px;
+}
+#actions {
+  position: relative;
+}
+#clear-all {
+  float: left;
+  margin-left: -1px;
+  clear: left;
+}
+#clear-completed {
+  float: right;
+  clear: right;
+  margin-right: -2px;
+}
+.dizmo-checkbox {
+  float: left;
+  margin-left: -6px;
+  clear: left;
+}
+label {
+  line-height: 32px;
+  overflow: hidden;
+  clear: left;
+  padding-left: 3px;
+}
+.tasklabel {
+  /*max-width: 120px;*/
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  display: inline-block;
+}
+#new-todo {
+  width: 245px;
+}
+.edit {
+  width: 110px !important;
+}
+.delete-todo {
+  float: right;
+  margin-right: -14px;
+}
+#todos input.edit {
+  display: none;
+}
+.list {
+  border-top: 1px solid rgba(114, 178, 222, 0.5);
+  border-bottom: 1px solid rgba(114, 178, 222, 0.5);
+  height: 200px;
+  top: 40px;
+  width: 255px;
+  overflow: hidden;
+  position: absolute;
+}
+.list ul {
+  list-style-type: none;
+  margin: 0 10px 0 0;
+  padding: 5px;
+  position: relative;
+}
+.list li {
+  height: 32px;
+  border-bottom: 1px solid rgba(114, 178, 222, 0.5);
+  padding: 0.2em 1em;
+  margin: 0 -1em;
+}
+#new-todo {
+  width: calc(100% - 10px);
+}
+#todos {
+  width: calc(100% - 20px);
+}
+#actions {
+  position: absolute;
+  bottom: 30px;
+  width: calc(100% - 20px);
+}
+.list {
+  overflow-y: scroll;
+  position: absolute;
+  overflow-x: hidden;
+}
+.list ul {
+  margin: 0 15px 0 0;
+}
+.tasklabel {
+  width: calc(100% - 100px);
+}
