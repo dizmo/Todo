@@ -54,7 +54,7 @@ function initEvents() {
   dizmo.publicStorage.subscribeToProperty('todos', changeTodos);
   changeTodos('todos',dizmo.publicStorage.getProperty('todos'));
   function changeTodos(p,val) {
-    if (!val){ dizmo.publicStorage.setProperty('todos',[]); return; }
+    if (!val){ todos=[]; dizmo.publicStorage.setProperty('todos',todos); return; }
     todos=val;
     refresh();
   }
