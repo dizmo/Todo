@@ -10,24 +10,40 @@
 
 ## Screenshots
 
-Add your screenshots measuring 400 times 275 pixes that illustrate your dizmo.
-![Screenshot placeholder](./placeholder-400x275.jpg)
+![New](./new.png)
 
 ## Description
 
-Describe what can be done with the dizmo and how it should be used.
+With this dizmo you can enter your todos in a list.
+A new dizmo instance opens with an empty list.
+![New](./new.png)
 
-## What is new in vX.Y.Z
+Write with a keyboard a new task (eg. "test delete") in the textbox. Pressing return key, the text is put as a new item in the list.
+![Test delete](./test_delete.png)
 
-Explain the improvements of the newest dizmo, then list those of each published version.
+Clicking the checkbox on the left, the item is marked as completed (checkbox is selected and text is crossed out).
+
+Pushing the delete button ("x") on the right, the item is removed from the list.
+
+Pushing the "Clear all" button removes all tasks (completed or not).
+A confirmation dialog is displayed:
+![Clear all check](./clear_all_check.png)
+
+Pushing the "Clear completed" button only removes completed tasks.
+![Clear completed check](./clear_completed_check.png)
+
+
+
+## What is new
+
+1.2.3: added help documentation
 
 ## Works well with
 
-(Optional) List the software and/or the dizmos with which your dizmo can be used.
+Is standalone. No reading/writing of stdout.
 
 ## Additional Information
 
-* Developer: (Developers Name)
-* Publisher: (Publisher's Name, remove if same as Developer)
-* Contact: (Who to contact for additional information or support)
-* Website: (URL of the dizmo providing additional information)
+* Developer: Martin Wirth
+* Contact: support@dizmo.com
+* Website: www.dizmo.com
