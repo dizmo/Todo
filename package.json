@@ -28,7 +28,7 @@
       ],
       "display-name": "ToDo",
       "elements-version": "1.0",
-      "api-version": "1.3",
+      "api-version": "1.4",
       "change-log": "Initial version"
     },
     "store": {
