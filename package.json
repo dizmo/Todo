@@ -1,7 +1,7 @@
 {
   "name": "ToDo",
   "description": "A simple To Do List to keep track of things that need to be done and tick them off as you complete your tasks.",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": {
     "name": "Martin Wirth",
     "email": "mwirth@dizmo.com"
@@ -28,7 +28,7 @@
       ],
       "display-name": "ToDo",
       "elements-version": "1.0",
-      "api-version": "1.3",
+      "api-version": "1.4",
       "change-log": "Initial version"
     },
     "store": {
