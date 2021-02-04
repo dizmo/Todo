@@ -27,7 +27,7 @@
         "tasks"
       ],
       "display-name": "ToDo",
-      "elements-version": "1.0",
+      "elements-version": "2.0",
       "api-version": "1.4",
       "change-log": "Initial version"
     },

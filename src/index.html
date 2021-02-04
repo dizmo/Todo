@@ -4,12 +4,20 @@
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
   <title> Todo </title>
   <script type="application/javascript" src="/scripts/dizmojs-1.4.js"></script>
-  <script type="application/javascript" src="/scripts/dizmoelements-1.0.js"></script>
-  <link rel="stylesheet" type="text/css" href="/styles/dizmoelements-1.0.css"></link>
-  <link href="style/style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="/styles/dizmoelements-2.0.css"></link>
+  <link rel="stylesheet" type="text/css" href="/styles/dizmoelements-modal-2.0.css"></link>
+  <script src="/scripts/dizmoelements-modal-2.0.js"></script>  <link href="style/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-  <div data-type="dizmo-notification" id="my-confirmation"> </div>
+  <dizmo-modal
+    id="my-confirmation"
+    title="Attention!"
+    text="Are you sure? Please confirm."
+    primarybutton="OK"
+    secondarybutton="Cancel"
+    style="display: none;"
+  >
+  </dizmo-modal>
   <div id="front">
     <div id="task-entry">
       <input data-type="dizmo-input" id="new-todo" placeholder="Add a new task" type="text" />

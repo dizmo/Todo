@@ -1,4 +1,4 @@
-/*global $ DizmoElements */
+/*global $ */
 window.document.addEventListener('dizmoready', function() {
   initEvents();
 });
@@ -11,15 +11,20 @@ function initEvents() {
   dizmo.setAttribute('geometry/minHeight', 280);
   $('#todos').height(dizmo.getHeight() - 110);
   $('#new-todo').on('keypress', function(e) { if (e.which == 13) { addNewTodo(); } });
+  var modal = document.querySelector('#my-confirmation');
+  modal.hide=function(){ modal.setAttribute('style','display: none');}
+  modal.show=function(){ modal.setAttribute('style','display: flex');}
+  modal.addEventListener('primaryclick', function(){ modal.do(); modal.hide(); })
+  modal.addEventListener('secondaryclick', function(){ modal.hide(); })
   $('#clear-all').on('click', function() {
-    DizmoElements('#my-confirmation').dnotify('ask', { title: 'Clear all todos', text: 'Are you sure? Please confirm.',
-      ok: function() { deleteAll(); }
-    });
+    modal.setAttribute('title','Clear all todos');
+    modal.do=deleteAll;
+    modal.show();
   });
   $('#clear-completed').on('click', function() {
-    DizmoElements('#my-confirmation').dnotify('ask', { title: 'Clear completed todos', text: 'Are you sure? Please confirm.',
-      ok: function() { deleteCompleted(); }
-    });
+    modal.setAttribute('title','Clear completed todos');
+    modal.do=deleteCompleted;
+    modal.show();
   });
   $('#todos').on('click keypress', function(e) {
     const otid = e.target.id;
@@ -31,7 +36,7 @@ function initEvents() {
     if (eid) {
       if (tid == 'ip') {
         if (e.type == 'keypress' && e.which == 13) {
-          var nv = DizmoElements('#' + otid).val();
+          var nv = $('#' + otid).val();
           update(eid, nv);
           let ioe = otid.substr(2, 1);
           $('#' + otid).hide();
@@ -77,13 +82,10 @@ function refresh() {
   $('#todos').empty();
   $ul.appendTo('#todos');
   todos.forEach((todo, i) => {
-    DizmoElements('#cb' + i).dcheckbox();
-    DizmoElements('#bu' + i).dbutton();
-    DizmoElements('#ip' + i).dinput();
     $('#ip' + i).hide();
     $('#la' + i).show();
     if (todo.completed) {
-      DizmoElements('#cb' + i).prop('checked', true);
+      $('#cb' + i).prop('checked', true);
       $('#la' + i).css('text-decoration', 'line-through');
     }
   });
