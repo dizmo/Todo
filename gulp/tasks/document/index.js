@@ -2,7 +2,7 @@ const cli = require('../../tools/cli.js');
 const gulp = require('gulp');
 
 const jsdoc = () => cli.npx(
-    'jsdoc', '--configure', 'jsdoc.json', 'src'
+    'jsdoc', '--configure', 'jsdoc.json', 'source'
 );
 gulp.task('docs', async (done) => {
     await cli.npx('rimraf', 'docs');

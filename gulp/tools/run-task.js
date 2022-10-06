@@ -2,7 +2,7 @@ const cli = require('./cli');
 const fs = require('fs').promises;
 
 const run_task = () => {
-    const args = ['./node_modules/gulp/bin/gulp.js'];
+    const args = ['--no-warnings', './node_modules/gulp/bin/gulp.js'];
     args.push(...process.argv.slice(2));
     const run = cli.run('node', ...args)();
     run.catch(process.exit);

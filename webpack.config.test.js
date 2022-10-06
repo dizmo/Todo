@@ -1,7 +1,7 @@
 const { resolve } = require('path');
 module.exports = {
     entry: {
-        main: ['core-js/stable', 'regenerator-runtime/runtime', './source/index.js']
+        main: ['core-js/stable', 'regenerator-runtime/runtime', './test/test.js']
     },
     module: {
         rules: [{
@@ -29,9 +29,9 @@ module.exports = {
         }]
     },
     output: {
-        path: resolve(__dirname, 'build', 'my-dizmo'),
+        path: resolve(__dirname, 'build', 'my-dizmo.test'),
         environment: { arrowFunction: false },
-        filename: 'index.js'
+        filename: 'test.js'
     },
     mode: 'none'
 };

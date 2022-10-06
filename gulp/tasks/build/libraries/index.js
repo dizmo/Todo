@@ -1,11 +1,12 @@
+const cli = require('../../../tools/cli.js');
 const pkg = require('../../../package.js');
 const gulp = require('gulp');
 const path = require('path');
 
 gulp.task('libraries', () => {
     const argv = require('yargs')
-        .default('sourcemaps').argv;
-
+        .default('sourcemaps', cli.arg('sourcemaps', true))
+        .argv;
     if (typeof argv.sourcemaps === 'string') {
         argv.sourcemaps = JSON.parse(argv.sourcemaps);
     }
@@ -18,10 +19,12 @@ gulp.task('libraries', () => {
         argv.sourcemaps.devtool &&
         argv.sourcemaps.devtool !== 'none'
     ) {
-        return gulp.src(['src/lib/**/*'], { base: 'src' })
+        return gulp
+            .src(['source/lib/**/*'], { base: 'source' })
             .pipe(gulp.dest(path.join('build', pkg.name)));
     } else {
-        return gulp.src(['src/lib/**/*', '!src/lib/**/*.map'], { base: 'src' })
+        return gulp
+            .src(['source/lib/**/*', '!source/lib/**/*.map'], { base: 'source' })
             .pipe(gulp.dest(path.join('build', pkg.name)));
     }
 });

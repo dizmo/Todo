@@ -1,5 +1,5 @@
 /*global $ DizmoElements */
-window.document.addEventListener('dizmoready', function() {
+global.document.addEventListener('dizmoready', function() {
   initEvents();
 });
 var todos;
@@ -51,10 +51,10 @@ function initEvents() {
       }
     }
   });
-  dizmo.publicStorage.subscribeToProperty('todos', changeTodos);
-  changeTodos('todos',dizmo.publicStorage.getProperty('todos'));
+  dizmo.onProperty('todos', changeTodos, { public: true });
+  changeTodos('todos',dizmo.getProperty('todos', { public: true }));
   function changeTodos(p,val) {
-    if (!val){ todos=[]; dizmo.publicStorage.setProperty('todos',todos); return; }
+    if (!val){ todos=[]; dizmo.setProperty('todos',todos, { public: true }); return; }
     todos=val;
     refresh();
   }
@@ -98,23 +98,23 @@ function add(name) {
   todo.completed = false;
   todo.id = _generateid();
   todos.push(todo);
-  dizmo.publicStorage.setProperty('todos', todos);
+  dizmo.setProperty('todos', todos, { public: true });
   refresh();
 }
 function update(id, name) {
   todos.forEach((todo) => { if (id == todo.id) { todo.name = name; } });
-  dizmo.publicStorage.setProperty('todos', todos);
+  dizmo.setProperty('todos', todos, { public: true });
 }
 function toggleCompleted(id) {
   todos.forEach((todo) => { if (id == todo.id) { todo.completed=!todo.completed; } });
-  dizmo.publicStorage.setProperty('todos', todos);
+  dizmo.setProperty('todos', todos, { public: true });
 }
 function deleteOne(id) {
-  dizmo.publicStorage.setProperty('todos', todos.filter((todo)=>id !== todo.id));
+  dizmo.setProperty('todos', todos.filter((todo)=>id !== todo.id), { public: true });
 }
 function deleteCompleted() {
-  dizmo.publicStorage.setProperty('todos', todos.filter((todo)=>!todo.completed));
+  dizmo.setProperty('todos', todos.filter((todo)=>!todo.completed), { public: true });
 }
 function deleteAll() {
-  dizmo.publicStorage.setProperty('todos', []);
+  dizmo.setProperty('todos', [], { public: true });
 }

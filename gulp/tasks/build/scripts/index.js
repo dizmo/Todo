@@ -1,6 +1,5 @@
 const cli = require('../../../tools/cli.js');
 const pkg = require('../../../package.js');
-
 const gulp = require('gulp');
 const path = require('path');
 
@@ -10,15 +9,13 @@ const webpack = require('webpack');
 
 gulp.task('scripts', async () => {
     const argv = require('yargs')
-        .default('minify')
-        .default('obfuscate')
-        .default('sourcemaps')
-        .default('closure', cli.arg('minify'))
+        .default('minify', cli.arg('minify', true))
+        .default('obfuscate', cli.arg('obfuscate', true))
+        .default('sourcemaps', cli.arg('sourcemaps', true))
         .coerce('webpack', (arg) => {
             const json = JSON.parse(arg || '{}');
             return map(json, (v) => regexify(v));
         }).argv;
-
     webpack_config = {
         ...webpack_config, ...argv.webpack
     };
@@ -34,6 +31,21 @@ gulp.task('scripts', async () => {
         webpack_config = {
             ...webpack_config, ...argv.sourcemaps
         };
+    } else {
+        for (const rule of (oc(webpack_config.module, 'rules') || [])) {
+            if (`${rule.test}` !== `${/\.(s[ac]ss|css)$/i}`) {
+                continue;
+            }
+            for (const u of (rule.use || [])) {
+                if (typeof u.loader === 'string' &&
+                    u.loader.match(/s?css-loader$/)
+                ) {
+                    u.options = {
+                        ...u.options, ...{ sourceMap: false }
+                    };
+                }
+            }
+        }
     }
     if (typeof argv.obfuscate === 'string') {
         argv.obfuscate = JSON.parse(argv.obfuscate);
@@ -43,35 +55,12 @@ gulp.task('scripts', async () => {
     }
     if (argv.obfuscate) {
         const obfuscator = await cli.npm_i(
-            'webpack-obfuscator'
+            'webpack-obfuscator', 'javascript-obfuscator'
         );
         webpack_config = {
             ...webpack_config, plugins: [
                 new obfuscator(argv.obfuscate)
             ]
-        };
-    }
-    if (typeof argv.closure === 'string') {
-        argv.closure = argv.closure !== argv.minify
-            ? JSON.parse(argv.closure)
-            : true;
-    }
-    if (typeof argv.closure === 'boolean') {
-        argv.closure = argv.closure ? {} : null;
-    }
-    if (argv.closure) {
-        const closure = await cli.npm_i(
-            'closure-webpack-plugin', 'google-closure-compiler'
-        );
-        const optimization = {
-            minimizer: [
-                new closure({ mode: 'STANDARD' }, {
-                    ...argv.closure
-                })
-            ]
-        };
-        webpack_config = {
-            ...webpack_config, optimization
         };
     }
     if (typeof argv.minify === 'string') {
@@ -120,4 +109,7 @@ function regexify(value) {
         }
     }
     return value;
+}
+function oc(el, a) {
+    return el ? el[a] : undefined;
 }

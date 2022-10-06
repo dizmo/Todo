@@ -1,5 +1,5 @@
 const gulp = require('gulp');
 
 gulp.task('markup:watch', () =>
-    gulp.watch('src/**/*.html', gulp.series('markup'))
+    gulp.watch('source/**/*.html', gulp.series('markup'))
 );

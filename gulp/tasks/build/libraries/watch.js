@@ -1,5 +1,5 @@
 const gulp = require('gulp');
 
 gulp.task('libraries:watch', () =>
-    gulp.watch('src/lib/**/*', gulp.series('libraries'))
+    gulp.watch('source/lib/**/*', gulp.series('libraries'))
 );
